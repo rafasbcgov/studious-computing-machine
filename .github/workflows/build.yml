@@ -28,6 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
       - run: yarn install --frozen-lockfile
+        working-directory: AwesomeProject
 
       - run: pod install
         working-directory: AwesomeProject/ios
@@ -63,9 +64,11 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
         run: yarn install --frozen-lockfile
+        working-directory: AwesomeProject
 
       - name: Bundle *.aap & *.apk
         run: cd android && ./gradlew bundleRelease assembleRelease
+        working-directory: AwesomeProject
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1

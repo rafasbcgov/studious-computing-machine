@@ -4,9 +4,11 @@ name: Build Android & iOS
 on: push
 
 jobs:
+     
   build-ios:
     runs-on: macos-latest
     steps:
+      - working-directory: AwesomeProject
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
@@ -38,6 +40,7 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     steps:
+      - working-directory: AwesomeProject
       - uses: actions/checkout@v2
 
       # Gradle Cache https://github.com/actions/cache/blob/main/examples.md#java---gradle

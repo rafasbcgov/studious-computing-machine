@@ -8,11 +8,10 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
-      - working-directory: AwesomeProject
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: AwesomeProject/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -31,16 +30,15 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - run: pod install
-        working-directory: ios
+        working-directory: AwesomeProject/ios
 
       - run: xcodebuild clean archive -workspace testCiCdReactNative.xcworkspace -scheme testCiCdReactNative -archivePath testCiCdReactNative.xcarchive CODE_SIGNING_ALLOWED=NO | xcpretty
-        working-directory: ios
+        working-directory: AwesomeProject/ios
 
 
   build-android:
     runs-on: ubuntu-latest
     steps:
-      - working-directory: AwesomeProject
       - uses: actions/checkout@v2
 
       # Gradle Cache https://github.com/actions/cache/blob/main/examples.md#java---gradle
@@ -73,10 +71,10 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: AwesomeProject/android/app/build/outputs/apk/release/app-release.apk
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: Aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
+          path: AwesomeProject/android/app/build/outputs/bundle/release/app-release.aab

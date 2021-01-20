@@ -35,6 +35,9 @@ jobs:
 
       - run: xcodebuild clean archive -workspace AwesomeProject.xcworkspace -scheme AwesomeProject -archivePath AwesomeProject.xcarchive CODE_SIGNING_ALLOWED=NO | xcpretty
         working-directory: AwesomeProject/ios
+        
+      - run: xcodebuild -exportArchive -archivePath ./AwesomeProject.xarchive -exportPath . -exportOptionPlist ./AwesomeProject/Info.plist | xcpretty
+        working-directory: AwesomeProject/ios
 
 
   build-android:

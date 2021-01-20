@@ -33,13 +33,13 @@ jobs:
       - run: pod install
         working-directory: AwesomeProject/ios
 
-      - run: xcodebuild clean archive -workspace AwesomeProject.xcworkspace -scheme AwesomeProject -archivePath ./AwesomeProject.xarchive CODE_SIGNING_ALLOWED=NO | xcpretty
+      - run: xcodebuild clean archive -workspace AwesomeProject.xcworkspace -scheme AwesomeProject -archivePath ./AwesomeProject.xcarchive CODE_SIGNING_ALLOWED=NO | xcpretty
         working-directory: AwesomeProject/ios
         
       - run: ls
         working-directory: AwesomeProject/ios
         
-      - run: xcodebuild -exportArchive -archivePath ./AwesomeProject.xarchive -exportPath . -exportOptionsPlist ./AwesomeProject/Info.plist | xcpretty
+      - run: xcodebuild -exportArchive -archivePath ./AwesomeProject.xcarchive -exportPath . -exportOptionsPlist ./AwesomeProject/Info.plist | xcpretty
         working-directory: AwesomeProject/ios
 
 
